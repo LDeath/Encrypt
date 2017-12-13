@@ -23,5 +23,5 @@ Pod::Spec.new do |s|
   s.author             = { "高赛" => "395765302@qq.com" }
   s.ios.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/LDeath/Encrypt.git", :tag => s.version }
-  s.source_files  = "EncryptTool", "Encrypt/**/*.{h,m}"
+  s.source_files  = "Encrypt", "Encrypt/**/*.{h,m}"
 end

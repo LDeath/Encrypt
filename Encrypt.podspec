@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "EncryptTool"
-  s.version      = "0.0.2"
+  s.name         = "Encrypt"
+  s.version      = "0.0.3"
   s.summary      = "加密方法封装"
   s.homepage     = "https://github.com/LDeath/Encrypt"
   s.license      = { :type => "MIT", :file => "LICENSE" }

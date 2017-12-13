@@ -18,4 +18,6 @@
 //发送带有空格的消息加密
 +(NSString *)dictToBlankStringEncryption:(NSDictionary *)dict;
 
++ (NSString *)getCurrentDate;
+
 @end

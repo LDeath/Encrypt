@@ -18,7 +18,7 @@
 }
 +(NSString *)dictToStringEncryption:(NSDictionary *)dict{
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSign:dict],@"sign_data",[self dictKeySort:dict from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[NSDate getCurrentDate],@"time_stmap",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSign:dict],@"sign_data",[self dictKeySort:dict from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[MAFMySecurity getCurrentDate],@"time_stmap",nil];
     NSString * jsonStr =[dic mj_JSONString];
     NSString * jsonStr1 = [jsonStr stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString * jsonStr2 = [jsonStr1 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -62,7 +62,7 @@
     [newDic setDictionary:dict];
     [newDic removeObjectForKey:@"pg"];
     [newDic setValue:pgStr forKey:@"pg"];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSignWithDic:newDic],@"sign_data",[self dictWithDicKeySort:newDic from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[NSDate getCurrentDate],@"time_stmap",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSignWithDic:newDic],@"sign_data",[self dictWithDicKeySort:newDic from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[MAFMySecurity getCurrentDate],@"time_stmap",nil];
     NSString * jsonStr =[dic mj_JSONString];
     NSString * jsonStr1 = [jsonStr stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString * jsonStr2 = [jsonStr1 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -119,7 +119,7 @@
                          @"1",@"app_type",
                          COMMONCLASS.PlatCode,@"app_platcode",
                          COMMONCLASS.appVersion,@"app_version",
-                         [NSDate getCurrentDate],@"time_stmap",nil];
+                         [MAFMySecurity getCurrentDate],@"time_stmap",nil];
     NSString * jsonStr =[dic mj_JSONString];
     NSString * jsonStr1 = [jsonStr stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString * jsonStr2 = [jsonStr1 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -200,11 +200,20 @@
 }
 #pragma mark - 发送带空格信息
 +(NSString *)dictToBlankStringEncryption:(NSDictionary *)dict{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSign:dict],@"sign_data",[self dictKeySort:dict from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[NSDate getCurrentDate],@"time_stmap",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[self doSign:dict],@"sign_data",[self dictKeySort:dict from:@"data"],@"pro_data",@"1",@"app_type",COMMONCLASS.PlatCode,@"app_platcode",COMMONCLASS.appVersion,@"app_version",[MAFMySecurity getCurrentDate],@"time_stmap",nil];
     NSString * jsonStr =[dic mj_JSONString];
     NSString * jsonStr2 = [jsonStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSString *s =[SecurityUtil encryptAESData:jsonStr2 app_key:@"ctnq12316encrypt"];
     return s;
+}
+
++ (NSString *)getCurrentDate{
+    NSDate *date = [NSDate date];
+    dateFormat = @"yyyyMMddHHmmss";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:dateFormat];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    return [dateFormatter stringFromDate:date];
 }
 
 
